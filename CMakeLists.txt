@@ -16,7 +16,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES api_lane_detection
+  LIBRARIES team300_lib
   CATKIN_DEPENDS roscpp
   DEPENDS system_lib
 )
@@ -26,33 +26,21 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_library(${PROJECT_NAME}
+add_library(team300_lib
   src/imageprocessing.cpp
   src/signdetect.cpp
   src/lanedetect.cpp
   src/carcontrol.cpp
 )
 
-add_executable(${PROJECT_NAME}_node src/main.cpp)
+add_executable(team300 src/main.cpp)
 
-add_dependencies(${PROJECT_NAME}_node ${catkin_EXPORTED_TARGETS})
+add_dependencies(team300 ${catkin_EXPORTED_TARGETS})
 
 target_link_libraries(
-  ${PROJECT_NAME}_node
-  ${PROJECT_NAME}
+  team300
+  team300_lib
   ${catkin_LIBRARIES}
   ${OpenCV_LIBS}
   ${Boost_LIBRARIES}
-)
-
-install(TARGETS ${PROJECT_NAME}_node ${ADDITIONAL_EXECUTABLES}
-   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
- )
-
-install(DIRECTORY include/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-  FILES_MATCHING PATTERN "*.h"
-  PATTERN ".svn" EXCLUDE
 )

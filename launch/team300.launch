@@ -5,5 +5,5 @@
 		<param name="port" value="9000"/>
 	</include>
 
-        <node name="team300" pkg="team300" type="team300_node" output="screen" args="_image_transport:=compressed" />  
+        <node name="team300" pkg="team300" type="team300" output="screen" args="_image_transport:=compressed" />  
 </launch>
