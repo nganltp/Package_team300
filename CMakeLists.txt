@@ -26,26 +26,26 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_library(api_lane_detection
+add_library(${PROJECT_NAME}
   src/imageprocessing.cpp
   src/signdetect.cpp
   src/lanedetect.cpp
   src/carcontrol.cpp
 )
 
-add_executable(lane_detect src/main.cpp)
+add_executable(${PROJECT_NAME}_node src/main.cpp)
 
-add_dependencies(lane_detect ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME}_node ${catkin_EXPORTED_TARGETS})
 
 target_link_libraries(
-  lane_detect
-  api_lane_detection
+  ${PROJECT_NAME}_node
+  ${PROJECT_NAME}
   ${catkin_LIBRARIES}
   ${OpenCV_LIBS}
   ${Boost_LIBRARIES}
 )
 
-install(TARGETS api_lane_detection ${ADDITIONAL_EXECUTABLES}
+install(TARGETS ${PROJECT_NAME}_node ${ADDITIONAL_EXECUTABLES}
    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
