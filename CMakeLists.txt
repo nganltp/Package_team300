@@ -40,7 +40,3 @@ add_dependencies(team300 ${catkin_EXPORTED_TARGETS})
 target_link_libraries(
   team300
   team300_lib
-  ${catkin_LIBRARIES}
-  ${OpenCV_LIBS}
-  ${Boost_LIBRARIES}
-)
